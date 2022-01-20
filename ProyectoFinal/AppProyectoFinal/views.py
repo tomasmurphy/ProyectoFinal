@@ -47,7 +47,7 @@ def buscar(request):
       if request.GET["nombre"]:
             nombre = request.GET["nombre"]
             mensaje = Contacto.objects.filter(nombre__icontains=nombre)
-            return render(request, "AppProyectoFinal/resultadobusqueda.html",{"nombre":nombre,"mensaje":mensaje})
+            return render(request, "AppProyectoFinal/mensajes.html",{"nombre":nombre,"mensaje":mensaje})
       else:
             return render(request, "AppProyectoFinal/mensajes.html")
   

@@ -11,12 +11,15 @@
     <input type="text" name="nombre" id="nombre">
     <input type="submit" value="Buscar">
 </form>
-
+<br>
+<input type="button" onclick="location.href='mensajes';" value="Todos los mensajes" />
 <section class="py-5">
     <div class="container my-5">
         <div class="row justify-content-center">
             <div class="col-lg-6">
                 <h2>Mis mensajes</h2>
+                
+{% if mensaje %}
                 {%for m in mensaje%}
                 <p class="mb-0">{{m.nombre}}  //   <a href='{{m.email}}'>{{m.email}}</a></p>
                 <p class="mb-0">{{m.mensaje}}</p>
@@ -26,5 +29,8 @@
             </div>
         </div>
     </div>
+{% else %}
+    <p> No hay mensajes con ese Nombre </p>
+{% endif %}
 </section>
 {% endblock %}
