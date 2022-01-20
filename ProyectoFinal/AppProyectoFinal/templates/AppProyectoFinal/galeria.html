@@ -1,0 +1,57 @@
+{% extends "AppProyectoFinal/padre.html" %}
+
+{% block Titulo %} Galeria {% endblock  %}
+
+{% block CuerpoDeLaPagina %}
+{% load static %}
+{%if imagen %}
+<section id="container-slider">	
+  <a href="javascript: fntExecuteSlide('prev');" class="arrowPrev"><i class="fas fa-chevron-circle-left"></i></a>
+  <a href="javascript: fntExecuteSlide('next');" class="arrowNext"><i class="fas fa-chevron-circle-right"></i></a>
+  <ul class="listslider">
+    <li><a itlist="itList_0" href="#" class="item-select-slid"></a></li>
+    <li><a itlist="itList_1" href="#"></a></li>
+    <li><a itlist="itList_2" href="#"></a></li>
+  </ul>
+  <ul id="slider">
+{%for i in imagen%}
+    <li style="background-image: url('/static/AppProyectoFinal/img/{{i.imagen}}'); z-index:0; opacity: 1;">
+      <div class="content_slider" >
+        <h2>{{i.anio}}</h2>
+          <p>{{i.nombre}}</p>  
+      </div>
+ {%endfor%}  
+ </ul>
+</section>
+
+{% else %}
+<section id="container-slider">	
+  <a href="javascript: fntExecuteSlide('prev');" class="arrowPrev"><i class="fas fa-chevron-circle-left"></i></a>
+  <a href="javascript: fntExecuteSlide('next');" class="arrowNext"><i class="fas fa-chevron-circle-right"></i></a>
+  <ul class="listslider">
+    <li><a itlist="itList_0" href="#" class="item-select-slid"></a></li>
+    <li><a itlist="itList_1" href="#"></a></li>
+    <li><a itlist="itList_2" href="#"></a></li>
+  </ul>
+  <ul id="slider">
+    <li style="background-image: url('/static/AppProyectoFinal/media/86n.jpg'); z-index:0; opacity: 1;">
+      <div class="content_slider" >
+        <h2>2000</h2>
+          <p>Una puerta</p>  
+      </div>
+      <li style="background-image: url('/static/AppProyectoFinal/media/89p.jpg'); z-index:0; opacity: 1;">
+        <div class="content_slider" >
+          <h2>2010</h2>
+            <p>Un gato</p>  
+        </div>
+        <li style="background-image: url('/static/AppProyectoFinal/media/93n.jpg'); z-index:0; opacity: 1;">
+          <div class="content_slider" >
+            <h2>2020</h2>
+              <p>Una ventana</p>
+            </div>
+ </ul>
+</section>
+{% endif %}
+{% endblock %}
+
+

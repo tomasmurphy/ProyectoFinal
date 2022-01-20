@@ -1,0 +1,20 @@
+{% extends "AppProyectoFinal/padre_formularios.html" %}
+
+{% block Titulo %} Gestor de carga {% endblock  %}
+
+{% block CuerpoDeLaPagina %}
+<br>
+<center>
+<h2><input type="button" onclick="location.href='form_perfil';" value="    Cargar datos de perfil    " />
+<br><br>    
+<input type="button" onclick="location.href='form_bio';" value="   Cargar tu biografia   " />
+<br><br>
+<input type="button" onclick="location.href='form_obra';" value="   Cargar nueva obra   " />
+<br><br>
+<input type="button" onclick="location.href='form_curso';" value=" Cargar nuevo curso o muestra " />
+<br><br>
+<input type="button" onclick="location.href='mensajes';" value="   Leer mis mensajes   " />
+<br><br>
+</h2>
+</center>
+{% endblock %}

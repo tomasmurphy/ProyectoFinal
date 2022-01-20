@@ -1,0 +1,20 @@
+{% extends "AppProyectoFinal/padre_formularios.html" %}
+
+{% block Titulo %} Gestor de carga {% endblock  %}
+
+{% block CuerpoDeLaPagina %}
+<input type="button" onclick="location.href='ingresar';" value="Volver al gestor" />
+{% if mi_form_perfil.errors %}
+Algo anda mal
+{% endif %}
+
+
+<form action="" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+    <table>
+    {{mi_form_perfil.as_table}}
+    </table>
+
+    <input type="submit" value="Enviar">
+</form>
+
+{% endblock %}

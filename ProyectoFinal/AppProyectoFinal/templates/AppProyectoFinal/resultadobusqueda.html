@@ -1,0 +1,17 @@
+{% extends "AppProyectoFinal/padre_formularios.html" %}
+
+{% block Titulo %} Gestor de carga {% endblock  %}
+
+{% block CuerpoDeLaPagina %}
+<input type="button" onclick="location.href='mensajes';" value="Volver a mensajes" />
+{% if mensaje %}
+<ul>
+{% for m in mensaje%}
+<li>{{m.nombre}} dijo {{m.mensaje}}</li>
+{% endfor %}
+</ul>
+
+{% else %}
+<p> No hay mensajes con ese Nombre </p>
+{% endif %}
+{% endblock %}

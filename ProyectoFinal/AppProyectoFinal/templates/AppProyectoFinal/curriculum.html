@@ -1,0 +1,23 @@
+{% extends "AppProyectoFinal/padre.html" %}
+
+{% block Titulo %} Curriculum {% endblock  %}
+
+{% block CuerpoDeLaPagina %}
+
+<section class="py-5">
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <h2>Curriculum</h2>
+                {%for c in cv%}
+                <p class="mb-0">{{c.nombre}}  //   <a href='{{c.sitio_web_lugar}}'>{{c.lugar}}</a></p>
+                <p class="mb-0">{{c.fecha}}</p>
+                <br>
+                
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

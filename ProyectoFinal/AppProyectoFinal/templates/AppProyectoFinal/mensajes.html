@@ -1,0 +1,30 @@
+{% extends "AppProyectoFinal/padre_formularios.html" %}
+
+{% block Titulo %} Gestor de carga {% endblock  %}
+
+{% block CuerpoDeLaPagina %}
+<input type="button" onclick="location.href='ingresar';" value="Volver al gestor" />
+<br>
+<br>
+<h4>Buscar un mensaje por nombre</h4>
+<form action="buscar" method="GET"> 
+    <input type="text" name="nombre" id="nombre">
+    <input type="submit" value="Buscar">
+</form>
+
+<section class="py-5">
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <h2>Mis mensajes</h2>
+                {%for m in mensaje%}
+                <p class="mb-0">{{m.nombre}}  //   <a href='{{m.email}}'>{{m.email}}</a></p>
+                <p class="mb-0">{{m.mensaje}}</p>
+                <br>
+                
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
