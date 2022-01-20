@@ -4,8 +4,11 @@ No se si entendí bien cual seria el proyecto final.
 Yo lo que hice es un Blog de artista, donde se supone que cada artista puede entrar, cargar sus datos, y de alguna 
 manera magica que aun no conozco le quede su perfil como extension del url para que no se mezcle con otros blogs. 
 
+**(Nota extra: Estuve leyendo requisitos del proyecto final y creo que no es asi como lo hice. Segun entiendo todos los usuarios suben cosas a un lugar en comun.
+en tal caso podria modificar el mio para que cada user suba una imagen a galeria y una biografia a biografia y se muestren uno abajo de otro?)**
+
 Tiene una pagina de inicio con nombre del blog profesion e imagen de fondo por defecto. 
-Cuando el usuario cargar su perfil se reemplazan esos por los ingresdos. 
+Cuando el usuario cargar su perfil se reemplazan esos por los ingresados. 
 
 Una galeria donde se muestran las obras, con nombre y año. Por defecto hay 3 imagenes.
 Cuando el usuario sube las suyas se reemplazan. 
