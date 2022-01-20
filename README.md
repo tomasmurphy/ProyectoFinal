@@ -34,4 +34,4 @@ En ingresar cargar datos de perfil, una bio, tres obras, un curso.
 
 Salir y mirar si quedo todo bien.
 
-Mi parte favorita, romper la url. 
+Mi parte favorita, romper la url. (cancelado, le tuve que volver a poner debug si no no carga los estaticos)
