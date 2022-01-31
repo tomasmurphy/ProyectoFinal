@@ -285,7 +285,7 @@ def editarPerfil(request):
             
                   #Datos que se modificarán
                   usuario.email = informacion['email']
-                  usuario.set_password= informacion['password1']
+                  usuario.set_password('password1')
                   usuario.save()
 
                   return render(request, "AppProyectofinal/inicio.html") #Vuelvo al inicio o a donde quieran
