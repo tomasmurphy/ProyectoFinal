@@ -1,30 +1,32 @@
 from email import charset
 from django.forms import *
+from django import forms
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm, UsernameField
+from ckeditor.fields import RichTextField
 
-
-class Form_bio(Form):
-    bio= CharField()
-
-class Form_obra(Form):
-    imagen = ImageField()
-    nombre = CharField()
-    anio = IntegerField()
+class UserRegisterForm(UserCreationForm):
     
-class Form_perfil(Form):
-    nombre_del_blog= CharField()
-    profesion = CharField()
-    img_fondo = ImageField()
+    email = EmailField(help_text=False)
+    password1 = CharField(label= "Contraseña", widget=PasswordInput, help_text=False)
+    password2 = CharField(label= "Confirmar contraseña", widget=PasswordInput, help_text=False) 
     
-class Form_curso_muestra(Form):
-    
-    nombre= CharField(max_length=200)
-    fecha = DateField()
-    lugar = CharField(max_length=200)
-    sitio_web_lugar= URLField()
+    class meta:
+        model = User
+        fields = ["username","email","password1","password2"]
+        help_texts = {k:'' for k in fields}
 
-class Form_contacto(Form):
-    nombre = CharField(max_length=100)
-    email = EmailField()
-    mensaje = CharField (max_length=1000)
+class UserEditForm(UserCreationForm):
 
-    
+    #Acá se definen las opciones que queres modificar del usuario, 
+    #Ponemos las básicas
+    email = forms.EmailField(label="Modificar E-mail")
+    password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Repetir la contraseña', widget=forms.PasswordInput) 
+
+
+    class Meta:
+        model = User
+        fields = [ 'email', 'password1', 'password2'] 
+        #Saca los mensajes de ayuda
+        help_texts = {k:"" for k in fields}

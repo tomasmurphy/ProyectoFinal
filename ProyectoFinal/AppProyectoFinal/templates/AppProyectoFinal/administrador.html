@@ -1,0 +1,28 @@
+{% extends "AppProyectoFinal/padre_admin.html" %}
+
+{% block Titulo %} Administrador {% endblock  %}
+
+{% block CuerpoDeLaPagina %}
+
+<section class="py-5">
+    <div class="container my-5">
+        <div class="row justify-content-left">
+            <div class="col-lg-10">
+                <h2>Administrador</h2>    
+                <h5><input type="button" onclick="location.href='/foro_lista_administrador';" value="Editar mensajes del foro" />
+                </h5>
+                <h5>
+                <input type="button" onclick="location.href='/blog_lista_administrador';" value="Editar posteos de blog" />
+                <br>
+                </h5>
+                <h5>
+                <input type="button" onclick="location.href='/usuario_lista_administrador';" value="Editar usuarios" />
+                <br>
+                </h5>
+                <br><br><br><br><br>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

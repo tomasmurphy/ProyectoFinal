@@ -1,0 +1,44 @@
+{% extends "AppProyectoFinal/padre.html" %}
+
+{% block Titulo %} Foro {% endblock  %}
+
+{% block CuerpoDeLaPagina %}
+
+<h5>Buscar un mensaje por usuario</h5>
+<form action="buscar" method="GET"> 
+    <input type="text" name="usuario" id="usuario">
+    <input type="submit" value="Buscar">
+</form>
+<br>
+<input type="button" onclick="location.href='foro';" value="Todos los mensajes" />
+<section class="py-5">
+    <div class="container my-5">
+        <div class="row justify-content-left">
+            <div class="col-lg-6">
+                <h2>Foro</h2>
+<input type="button" onclick="location.href='mensajes';" value="Dejar un mensaje" />
+<br>
+{% if foro_list %}
+                {%for x in foro_list %}
+                <p class="mb-0"><b>{{x.usuario}}</b>  // <i> {{x.fecha}}</i></p>
+                <p class="mb-0">{{x.mensaje | safe}}</p>
+                <br>
+                
+                {% endfor %}
+                {% else %}
+    <p> No hay mensajes </p>
+{% endif %}
+
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+
+
+
+
+
+
+

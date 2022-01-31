@@ -1,0 +1,46 @@
+{% extends "AppProyectoFinal/padre_admin.html" %}
+
+{% block Titulo %} Posteos {% endblock  %}
+
+{% block CuerpoDeLaPagina %}
+<input type="button" onclick="location.href='/administrador';" value="Volver" />
+<h5>Buscar por titulo</h5>
+<form action="buscar_blog_administrador" method="GET"> 
+    <input type="text" name="titulo" id="titulo">
+    <input type="submit" value="Buscar">
+</form>
+<br>
+<input type="button" onclick="location.href='/blog_lista_administrador';" value="Todos los posteos" />
+{%if blog_list%}
+{% for x in blog_list  %}
+<section class="py-5">
+    <div class="container my-5">
+        <div class="row justify-content-left">
+            <div class="col-lg-6">
+              <h2>{{x.titulo}}</h2>
+                      <p class="mb-0">de {{x.autor}}</p>
+                      <table class="default">
+                      <td><div>
+                        <img style="border: 15px solid; color: white;" src="/static/AppProyectoFinal/img/{{x.portada}}" alt="" width=100 />
+                            </div>
+                    </td>
+                  <td>     </td>
+                      <td>{{x.texto|safe}}</td>
+                  </table>   
+                  <p class="mb-0"><i>por {{x.usuario}} el {{x.fecha}}</i></p>
+                  <p><a href="{%url 'blog_borrar_administrador' x.id%}"> Borrar </a>
+                    <a href="{%url 'blog_editar_administrador' x.id%}"> Editar </a></p>
+                    {% endfor %}
+                    {% else %}
+No hay posteos
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+{% endif %}
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock %}

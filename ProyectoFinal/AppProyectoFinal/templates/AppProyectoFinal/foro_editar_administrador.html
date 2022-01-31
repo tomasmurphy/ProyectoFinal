@@ -1,0 +1,31 @@
+{% extends "AppProyectoFinal/padre_admin.html" %}
+
+{% block Titulo %} Editar mensaje {% endblock  %}
+
+{% block CuerpoDeLaPagina %}
+<section class="py-5">
+    <div class="container my-5">
+        <div class="row justify-content-left">
+            <div class="col-lg-10">
+                <h2>Editar mensaje</h2>    
+                {% if form.errors %}
+                Algo anda mal
+                {% endif %}
+                                    <form action="" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+                                        <table>
+                                        
+                                        {{form.mensaje}}
+                                        </table>
+                                    
+                                        <input type="submit" value="Editar">
+                
+                
+                <input type="button" onclick="location.href='/foro_lista_administrador';" value="Volver" />
+                             
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

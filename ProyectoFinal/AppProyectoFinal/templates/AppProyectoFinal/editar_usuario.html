@@ -1,0 +1,29 @@
+{% extends "AppProyectoFinal/padre_admin.html" %}
+
+{% block Titulo %} Mi perfil {% endblock  %}
+
+{% block CuerpoDeLaPagina %}
+<section class="py-5">
+    <div class="container my-5">
+        <div class="row justify-content-left">
+            <div class="col-lg-10">
+                <h2>Editar mi usuario</h2>    
+                <input type="button" onclick="location.href='change_password';" value="Cambiar contraseña" />
+                <br><br>
+                <br>                        
+            <form action="" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+                <table>
+                
+                    {{ form.as_table }}
+                </table>
+                <br>
+                <input type="submit" value="Guardar cambios">
+                <br><br>
+                <input type="button" onclick="location.href='/mi_usuario';" value="Volver" />
+
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

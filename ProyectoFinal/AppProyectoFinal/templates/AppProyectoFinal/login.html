@@ -1,0 +1,22 @@
+{% extends "AppProyectoFinal/padre.html" %}
+
+{% block Titulo %} Login {% endblock  %}
+
+{% block CuerpoDeLaPagina %}
+<input type="button" onclick="location.href='register';" value="Si no tenes usuario crea uno aca" />
+{{bienvenido}}
+<section class="py-5">
+    <div class="container my-5">
+        <div class="row justify-content-left">
+            <div class="col-lg-10">
+                <h2>Ingresar</h2>    
+                <form action="" method="POST">{% csrf_token %}
+                    {{form.as_p}}
+                    <button type="submit"> Iniciar sesion </button>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

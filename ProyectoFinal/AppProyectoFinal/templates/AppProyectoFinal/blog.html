@@ -1,0 +1,40 @@
+{% extends "AppProyectoFinal/padre.html" %}
+
+{% block Titulo %} Reseñas {% endblock  %}
+
+{% block CuerpoDeLaPagina %}
+<h5><input type="button" onclick="location.href='form_blog';" value="Cargar tu reseña" /></h5>
+<h5>Buscar reseñas por titulo</h5>
+<form action="buscar_blog" method="GET"> 
+    <input type="text" name="titulo" id="titulo">
+    <input type="submit" value="Buscar">
+</form>
+<section class="py-5">
+    <div class="container my-5">
+        <div class="row justify-content-left">
+            <div class="col-lg-10">
+                {% if blog_list %}
+                <h2>Reseñas</h2>
+                    
+                </form>
+                {% for x in blog_list %}
+                <p><a href="{%url 'ver_blog' x.id%}"style='text-decoration:none;color:black'><h5>{{x.titulo}}</h5></a><p>
+                <table class="default">
+                    <td><div>
+                        <img style="border: 15px solid; color: white;" src="/static/AppProyectoFinal/img/{{x.portada}}" alt="" width=75/>
+                        </div>
+                    </td>
+                  <td>de <b>{{x.autor}}//</b></td>
+                    <td><i>reseñado por {{x.usuario}}</i> </td>
+                    
+                  </table> <br>  {% endfor %}             
+            </div>
+        </div>
+    </div>
+    {% else %}
+    No hay posteos
+    {% endif %}
+</section>
+
+
+{% endblock %}

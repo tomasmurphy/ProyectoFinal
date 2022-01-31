@@ -1,0 +1,26 @@
+{% extends "AppProyectoFinal/padre_admin.html" %}
+
+{% block Titulo %} Borrar usuario {% endblock  %}
+
+{% block CuerpoDeLaPagina %}
+<section class="py-5">
+    <div class="container my-5">
+        <div class="row justify-content-left">
+            <div class="col-lg-10">
+                <h2>¿Esta seguro que desea borrar?</h2>    
+                Esta no es una buena practica, se recomienda editar el usuario y dejarlo inactivo. <br>
+                ¿Desea continuar?<br><br>
+                                    <form action="" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+                                        
+                                    <input type="submit" value="Sa venga el delete">
+                
+                
+                <input type="button" onclick="location.href='/usuario_lista_administrador';" value="Bueno no" />
+                <br><br><br><br><br><br>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

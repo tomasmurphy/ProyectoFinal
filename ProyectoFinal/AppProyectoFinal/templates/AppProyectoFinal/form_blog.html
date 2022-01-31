@@ -1,0 +1,30 @@
+{% extends "AppProyectoFinal/padre.html" %}
+
+{% block Titulo %} Cargar reseña {% endblock  %}
+
+{% block CuerpoDeLaPagina %}
+<input type="button" onclick="location.href='blog';" value="Salir" />
+<section class="py-5">
+    <div class="container my-5">
+        <div class="row justify-content-left">
+            <div class="col-lg-10">
+                <h2>Cargar reseña</h2>    
+                {% if mi_form_bio.errors %}
+                Algo anda mal
+                {% endif %}
+                <br>
+                <form action="" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+                    <table>
+                    {{form.as_table}}
+                    </table>
+                    <br>
+                    <input type="submit" value="Enviar">
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

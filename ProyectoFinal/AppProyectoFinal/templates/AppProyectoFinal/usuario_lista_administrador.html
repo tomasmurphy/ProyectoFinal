@@ -1,0 +1,31 @@
+{% extends "AppProyectoFinal/padre_admin.html" %}
+
+{% block Titulo %} Usuarios {% endblock  %}
+
+{% block CuerpoDeLaPagina %}
+<input type="button" onclick="location.href='/administrador';" value="Volver" />
+<h5>Buscar usuario</h5>
+<form action="buscar_user_administrador" method="GET"> 
+    <input type="text" name="username" id="username">
+    <input type="submit" value="Buscar">
+</form>
+<input type="button" onclick="location.href='/usuario_lista_administrador';" value="Todos los usuarios" />
+<section class="py-5">
+    <div class="container my-5">
+        <div class="row justify-content-left">
+            <div class="col-lg-10">
+                <h2>Usuarios</h2>    
+                {% for x in user_list  %}
+                <p> <b>{{x.username}}</b> // <i>{{x.email}}</i>
+                <a href="{%url 'usuario_borrar_administrador' x.id%}"> Borrar </a>
+                <a href="{%url 'usuario_editar_administrador' x.id%}"> Editar </a>
+                
+                {% endfor %}                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock %}

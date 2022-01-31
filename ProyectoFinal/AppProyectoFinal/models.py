@@ -1,48 +1,44 @@
+from datetime import datetime
 from distutils.command.upload import upload
+from email.policy import default
 from django.db.models import (
 Model, CharField, IntegerField, 
 DateField, ImageField, URLField,
-EmailField)
+EmailField, ForeignKey, CASCADE, TextField)
 from django.core.files.storage import FileSystemStorage
+from django.contrib.auth.models import User
+from ckeditor_uploader.fields import RichTextUploadingField
+from ckeditor.fields import RichTextField
+from ckeditor.widgets import CKEditorWidget
 
 
-class Curso_Muestra(Model):
+class Foro(Model):
+    usuario = CharField(max_length=100, null=True, blank=True, default="anonimo")
+    mensaje = RichTextField()
+    fecha = CharField(max_length=100, null=True, blank=True, default=datetime.now())
     
-    nombre= CharField(max_length=200)
-    fecha = DateField()
-    lugar = CharField(max_length=200)
-    sitio_web_lugar= URLField()
+    def __str__(self):
+        return f'self.usuario'
+    
+    class Meta:
+        ordering = ["-id"]
 
-class Perfil(Model):
+class Blog(Model):
     ruta = FileSystemStorage(location="AppProyectoFinal/static/AppProyectoFinal/img")
-    nombre_del_blog= CharField(max_length=200)
-    profesion = CharField(max_length=200)
-    img_fondo = ImageField(storage=ruta)
+    usuario = CharField(max_length=200)
+    titulo = CharField(max_length=200)
+    autor = CharField(max_length=200)
+    fecha = CharField(max_length=100, null=True, blank=True, default=datetime.now() )
+    texto = RichTextField(max_length=10000)
+    portada = ImageField(storage=ruta)
     
     class Meta:
         ordering = ["-id"]
     
-    def book(self):
-        return {"nombre_del_blog":self.nombre_del_blog,"profesion":self.profesion,"img_fondo":self.img_fondo}
-    
-class Obra(Model):
-    ruta = FileSystemStorage(location="AppProyectoFinal/static/AppProyectoFinal/img")
-    imagen = ImageField(storage=ruta)
-    nombre= CharField(max_length=200)
-    anio = IntegerField()
-    
     def __str__(self):
-        return f'{self.imagen}'
+        return "{self.texto} de {self.usuario}"
     
-class Contacto(Model):
-    nombre = CharField(max_length=100)
-    email = EmailField()
-    mensaje = CharField (max_length=1000)
 
-class Bio(Model):
-    bio = CharField(max_length=10000)
-    class Meta:
-        ordering = ["-id"]
-    def __str__(self):
-        return {"bio":self.bio}
+    
+
     

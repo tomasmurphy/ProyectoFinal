@@ -1,57 +1,35 @@
 {% extends "AppProyectoFinal/padre.html" %}
 
 {% block Titulo %} Galeria {% endblock  %}
-
 {% block CuerpoDeLaPagina %}
 {% load static %}
-{%if imagen %}
+{% if blog_list %}
 <section id="container-slider">	
+    
   <a href="javascript: fntExecuteSlide('prev');" class="arrowPrev"><i class="fas fa-chevron-circle-left"></i></a>
   <a href="javascript: fntExecuteSlide('next');" class="arrowNext"><i class="fas fa-chevron-circle-right"></i></a>
   <ul class="listslider">
-    <li><a itlist="itList_0" href="#" class="item-select-slid"></a></li>
-    <li><a itlist="itList_1" href="#"></a></li>
-    <li><a itlist="itList_2" href="#"></a></li>
+    {%for x in blog_list%}
+    <li><a itlist="itList_{{x.id}}" href="#"></a></li>
+    {%endfor%} 
   </ul>
   <ul id="slider">
-{%for i in imagen%}
-    <li style="background-image: url('/static/AppProyectoFinal/img/{{i.imagen}}'); z-index:0; opacity: 1;">
+    {%for x in blog_list%}
+    <li style="background-image: url('/static/AppProyectoFinal/img/{{x.portada}}'); z-index:0; opacity: 1;">
       <div class="content_slider" >
-        <h2>{{i.anio}}</h2>
-          <p>{{i.nombre}}</p>  
+        <h2>{{x.autor}}</h2>
+          <p><a href="{%url 'ver_blog' x.id%}" style='text-decoration:none;color:white'>{{x.titulo}}</a></p>  
       </div>
- {%endfor%}  
- </ul>
+      {%endfor%} 
+ 
+    </ul>
+    
 </section>
-
 {% else %}
-<section id="container-slider">	
-  <a href="javascript: fntExecuteSlide('prev');" class="arrowPrev"><i class="fas fa-chevron-circle-left"></i></a>
-  <a href="javascript: fntExecuteSlide('next');" class="arrowNext"><i class="fas fa-chevron-circle-right"></i></a>
-  <ul class="listslider">
-    <li><a itlist="itList_0" href="#" class="item-select-slid"></a></li>
-    <li><a itlist="itList_1" href="#"></a></li>
-    <li><a itlist="itList_2" href="#"></a></li>
-  </ul>
-  <ul id="slider">
-    <li style="background-image: url('/static/AppProyectoFinal/media/86n.jpg'); z-index:0; opacity: 1;">
-      <div class="content_slider" >
-        <h2>2000</h2>
-          <p>Una puerta</p>  
-      </div>
-      <li style="background-image: url('/static/AppProyectoFinal/media/89p.jpg'); z-index:0; opacity: 1;">
-        <div class="content_slider" >
-          <h2>2010</h2>
-            <p>Un gato</p>  
-        </div>
-        <li style="background-image: url('/static/AppProyectoFinal/media/93n.jpg'); z-index:0; opacity: 1;">
-          <div class="content_slider" >
-            <h2>2020</h2>
-              <p>Una ventana</p>
-            </div>
- </ul>
-</section>
+Aun noy portadas cargadas
 {% endif %}
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+        <script defer src="{% static 'AppProyectoFinal/js/functions.js' %}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{% static 'AppProyectoFinal/js/scripts.js' %}"></script>
 {% endblock %}
-
-

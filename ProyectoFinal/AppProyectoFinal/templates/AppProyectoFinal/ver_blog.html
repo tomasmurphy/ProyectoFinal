@@ -1,0 +1,25 @@
+{% extends "AppProyectoFinal/padre.html" %}
+{% block Titulo %} Reseña {% endblock  %}
+
+{% block CuerpoDeLaPagina %}
+<section class="py-5">
+    <div class="container my-5">
+        <div class="row justify-content-left">
+            <div class="col-lg-6">
+              <h2>{{object.titulo}}</h2>
+                      <p class="mb-0">de {{object.autor}}</p>
+                      <table class="default">
+                      <td><div>
+                        <img style="border: 15px solid; color: white;" src="/static/AppProyectoFinal/img/{{object.portada}}" alt="" width="200" />
+                            </div>
+                    </td>
+                  <td>     </td>
+                      <td>{{object.texto |safe}}</td>
+                  </table>   
+                  <p class="mb-0"><i>por {{object.usuario}} el {{object.fecha}}</i></p>
+                              
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

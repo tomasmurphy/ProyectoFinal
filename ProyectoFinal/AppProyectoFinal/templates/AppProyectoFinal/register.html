@@ -1,0 +1,23 @@
+{% extends "AppProyectoFinal/padre.html" %}
+
+{% block Titulo %} Crear usuario {% endblock  %}
+
+{% block CuerpoDeLaPagina %}
+<section class="py-5">
+    <div class="container my-5">
+        <div class="row justify-content-left">
+            <div class="col-lg-10">
+                <h2>Crear usuario</h2>    
+                <form action="" method="POST">{% csrf_token %}
+                    {{form.as_p}}
+                    <button type="submit"> Crear usuario </button>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock %}
