@@ -286,7 +286,7 @@ class AdministradorUserDeleteView(DeleteView):
 @method_decorator (staff_member_required, name="dispatch")
 class AdministradorUserUpdateView(UpdateView):
       model = User
-      fields = ["username","email","first_name","last_name"]
+      fields = ["username","email","first_name","last_name", "is_active","is_staff"]
       success_url = reverse_lazy('usuario_lista_administrador')
       template_name = "AppProyectoFinal/usuario_editar_administrador.html"
 
