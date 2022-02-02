@@ -38,6 +38,17 @@ class Blog(Model):
     def __str__(self):
         return "{self.texto} de {self.usuario}"
     
+class Podcast(Model):
+    usuario = CharField(max_length=100, null=True, blank=True, default="anonimo")
+    link = CharField(max_length=100)
+    fecha = CharField(max_length=100, null=True, blank=True, default=datetime.now())
+    
+    def __str__(self):
+        return f'self.usuario'
+    
+    class Meta:
+        ordering = ["-id"]
+    
 
     
 

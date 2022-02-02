@@ -1,0 +1,35 @@
+{% extends "AppProyectoFinal/padre.html" %}
+
+{% block Titulo %} Cargar podcast {% endblock  %}
+
+{% block CuerpoDeLaPagina %}
+<input type="button" onclick="location.href='podcast';" value="Salir" />
+<section class="py-5">
+    <div class="container my-5">
+        <div class="row justify-content-left">
+            <div class="col-lg-10">
+                <h2>Cargar podcast</h2>   
+                <p>Solo disponible para podcast de Spotify.</p>
+                <p>Copiar solo la ultima parte:</p>
+                <p><del>https://open.spotify.com/episode/</del>  <b>5vlfD4O6QkUrVCZAN06wuK</b></p>
+               
+
+                {% if mi_form_bio.errors %}
+                Algo anda mal
+                {% endif %}
+                <br>
+                <form action="" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+                    <table>
+                    {{form.as_table}}
+                    </table>
+                    <br>
+                    <input type="submit" value="Enviar">
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

@@ -129,7 +129,7 @@ class ForoCreateView(CreateView):
             Foro.objects.create(mensaje = self.request.POST['mensaje'], usuario = user)
             return redirect(self.success_url)
       
-def buscar(request):
+def buscar_mensaje(request):
       if request.GET["usuario"]:
             usuario = request.GET["usuario"]
             mensaje = Foro.objects.filter(usuario__icontains=usuario)
@@ -137,6 +137,37 @@ def buscar(request):
             return render(request, "AppProyectoFinal/foro.html",foro_list)
       else:
             return render(request, "AppProyectoFinal/foro.html")
+
+#PODCAST
+
+class PodcastListView(ListView):
+      model = Podcast
+      template_name = "AppProyectoFinal/podcast.html"
+        
+class PodcastCreateView(CreateView):
+      model = Podcast
+      fields = ["link"]
+      success_url = reverse_lazy('podcast')
+      template_name = "AppProyectoFinal/form_podcast.html"
+      
+      def form_valid(self, form):
+            try:
+                  user = User.objects.get(username = self.request.user)
+            except ObjectDoesNotExist:
+                  user = "Anonimo"
+
+            Podcast.objects.create(link = self.request.POST['link'],
+                            usuario = user)
+            return redirect(self.success_url)
+
+def buscar_podcast(request):
+      if request.GET["usuario"]:
+            usuario = request.GET["usuario"]
+            mensaje = Podcast.objects.filter(usuario__icontains=usuario)
+            foro_list = {"usuario":usuario,"podcast_list":mensaje}
+            return render(request, "AppProyectoFinal/podcast.html",foro_list)
+      else:
+            return render(request, "AppProyectoFinal/podcast.html")
 
 #ADMINISTRADOR-
 @staff_member_required
@@ -150,7 +181,7 @@ class AdminstradorForoListView(ListView):
       template_name = "AppProyectoFinal/foro_lista_administrador.html"
 
 @staff_member_required
-def buscar_administrador(request):
+def buscar_mensaje_administrador(request):
       if request.GET["usuario"]:
             usuario = request.GET["usuario"]
             mensaje = Foro.objects.filter(usuario__icontains=usuario)
@@ -201,6 +232,35 @@ class AdministradorBlogUpdateView(UpdateView):
       success_url = reverse_lazy('blog_lista_administrador')
       template_name = "AppProyectoFinal/blog_editar_administrador.html"  
 
+#podcast
+@method_decorator (staff_member_required, name="dispatch")
+class AdminstradorPodcastListView(ListView):
+      model = Podcast
+      template_name = "AppProyectoFinal/podcast_lista_administrador.html"
+
+@staff_member_required
+def buscar_podcast_administrador(request):
+      if request.GET["usuario"]:
+            usuario = request.GET["usuario"]
+            mensaje = Podcast.objects.filter(usuario__icontains=usuario)
+            podcast_list = {"usuario":usuario,"podcast_list":mensaje}
+            return render(request, "AppProyectoFinal/podcast_lista_administrador.html",podcast_list)
+      else:
+            return render(request, "AppProyectoFinal/podcast_lista_administrador.html")
+
+@method_decorator (staff_member_required, name="dispatch")            
+class AdministradorPodcastDeleteView(DeleteView):
+      model = Podcast
+      template_name = "AppProyectoFinal/podcast_confirm_delete.html"
+      success_url = reverse_lazy('podcast_lista_administrador')
+      
+@method_decorator (staff_member_required, name="dispatch")
+class AdministradorPodcastUpdateView(UpdateView):
+      model = Podcast
+      fields = ["link"]
+      success_url = reverse_lazy('podcast_lista_administrador')
+      template_name = "AppProyectoFinal/podcast_editar_administrador.html"
+
 #usuario
 @method_decorator (staff_member_required, name="dispatch")
 class AdminstradorUserListView(ListView):
@@ -226,19 +286,30 @@ class AdministradorUserDeleteView(DeleteView):
 @method_decorator (staff_member_required, name="dispatch")
 class AdministradorUserUpdateView(UpdateView):
       model = User
-      fields = ["username","password","email","first_name","last_name"]
+      fields = ["username","email","first_name","last_name"]
       success_url = reverse_lazy('usuario_lista_administrador')
       template_name = "AppProyectoFinal/usuario_editar_administrador.html"
-      
-      
-      def form_valid(self, form):
-            
-            user=User()
-            user.set_password
-            user.update()
 
-            return redirect(self.success_url)
-    
+@staff_member_required
+def change_password_administrador(request, id):
+
+      usuario = User.objects.get(id=id)
+     
+      if request.method == 'POST':
+            miFormulario = UserEditForm(request.POST) 
+            if miFormulario.is_valid():
+
+                  informacion = miFormulario.cleaned_data
+                  usuario.set_password(informacion['password1'])
+                  usuario.save()
+
+                  return render(request, "AppProyectofinal/inicio.html") 
+      else: 
+            miFormulario= UserEditForm() 
+
+      return render(request, "AppProyectoFinal/change_password_administrador.html", {"form":miFormulario, "usuario":usuario})
+
+      
 #PERFIL DE USUARIO
 @method_decorator (login_required, name="dispatch")
 class UserAutoUpdateView(UpdateView):
@@ -256,56 +327,21 @@ def mi_usuario(request):
 
 @login_required
 def change_password(request):
-    if request.method == 'POST':
-        form = PasswordChangeForm(request.user, request.POST)
-        if form.is_valid():
-            user = form.save()
-            update_session_auth_hash(request, user)
-            return redirect('mi_usuario')
-        else:
-            messages.error(request, 'Hubo un error')
-    else:
-        form = PasswordChangeForm(request.user)
-    return render(request, 'AppProyectoFinal/change_password.html', {
-        'form': form
-    })
-
-
-def editarPerfil(request):
-
-      #Instancia del login
       usuario = request.user
-     
-      #Si es metodo POST hago lo mismo que el agregar
       if request.method == 'POST':
             miFormulario = UserEditForm(request.POST) 
-            if miFormulario.is_valid():   #Si pasó la validación de Django
+            if miFormulario.is_valid():
 
                   informacion = miFormulario.cleaned_data
-            
-                  #Datos que se modificarán
-                  usuario.email = informacion['email']
-                  usuario.set_password('password1')
+                  usuario.set_password(informacion['password1'])
                   usuario.save()
 
-                  return render(request, "AppProyectofinal/inicio.html") #Vuelvo al inicio o a donde quieran
-      #En caso que no sea post
+                  return redirect("login") 
       else: 
-            #Creo el formulario con los datos que voy a modificar
+            
             miFormulario= UserEditForm(initial={ 'email':usuario.email}) 
 
-      #Voy al html que me permite editar
-      return render(request, "AppProyectoFinal/editarPerfil.html", {"form":miFormulario, "usuario":usuario})
+      return render(request, "AppProyectoFinal/change_password.html", {"form":miFormulario, "usuario":usuario})
 
-# class UserSerializer(serializers,ModelSerializer):
-#       def create(self, **validate_data):
-#             user=User(**validate_data)
-#             user.set_password(validate_data["password"])
-#             user.save()
-#             return user
-#       def update(self, instance, validate_data):
-#             update_user= super().update(instance, validate_data)
-#             update_user.set_password(validate_data["password"])
-#             update_user.save()
-#             return update_user
-      
+
+

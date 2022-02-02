@@ -1,0 +1,35 @@
+{% extends "AppProyectoFinal/padre_admin.html" %}
+
+{% block Titulo %} Podcast {% endblock  %}
+
+{% block CuerpoDeLaPagina %}
+<input type="button" onclick="location.href='/administrador';" value="Volver" />
+<h5>Buscar un podcast por usuario</h5>
+<form action="buscar_podcast_administrador" method="GET"> 
+    <input type="text" name="usuario" id="usuario">
+    <input type="submit" value="Buscar">
+</form>
+<input type="button" onclick="location.href='/podcast_lista_administrador';" value="Todos los podcast" />
+<section class="py-5">
+    <div class="container my-5">
+        <div class="row justify-content-left">
+            <div class="col-lg-10">
+                <h2>Podcasts</h2> 
+                {% if podcast_list %}
+                {% for x in podcast_list %}
+                <p>subido por {{x.usuario}} el {{x.fecha}}<p>
+                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/{{x.link}}?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                <a href="{%url 'podcast_borrar_administrador' x.id%}"> Borrar </a>
+                <a href="{%url 'podcast_editar_administrador' x.id%}"> Editar </a></p>
+                {% endfor %}    
+                {% else %}
+No hay podcasts
+<br><br><br><br><br><br><br>
+{% endif %} 
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

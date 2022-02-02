@@ -1,37 +1,52 @@
 # PrroyectoFinal
-Proyecto final del curso de Python
-No se si entendí bien cual seria el proyecto final.
-Yo lo que hice es un Blog de artista, donde se supone que cada artista puede entrar, cargar sus datos, y de alguna 
-manera magica que aun no conozco le quede su perfil como extension del url para que no se mezcle con otros blogs. 
 
-Tiene una pagina de inicio con nombre del blog profesion e imagen de fondo por defecto. 
-Cuando el usuario cargar su perfil se reemplazan esos por los ingresdos. 
+*** El proyecto final es la rama proyecto final. La rama master es la preentrega.***
 
-Una galeria donde se muestran las obras, con nombre y año. Por defecto hay 3 imagenes.
-Cuando el usuario sube las suyas se reemplazan. 
+## Tomas Murphy
 
-Una biografia que solo indica que ahi ira su bio.
-Cuando el usuario sube la suya se reemplazan. 
+## BLOG
+Es un blog donde se pueden subir reseñas de libros, podcast de spotify e interactuar en un foro.
 
-Curriculum esta vacio por defecto.
-El usuario puede subir obras y muestras que se mostraran con nombre de la muestra, luegar (linkeado al sitio web del lugar) y fecha.
+### Inicio
+Se ingresa desde localhost:http://127.0.0.1:8000
 
-En contacto hay un formulario para recibir mensajes de visitante. 
+### Superusuario
+blogcoder / admin123
 
-En ingresar se accede a las funcionalidades para cambiar los datos.
-Los rudimentarios botones llevan a:
+### Requeriments
+Hay un archivo txt lleno de cosas en la carpeta principal. (No todo se usa, me quedó ahi)
+El texto enriquecido esta hecho con ckeditor. 
 
-Cargar datos de perfil: Siempre va a quedar el ultimo ingresado.
-Cargar datos de bio: Siempre va a quedar el ultimo ingresado.
-Cargar obra: se van acumulando.
-Cargar curso o muestra: se van acumulando.
-Leer mis mensajes: Estan los mensajes recibidos y un filtro para buscar mensajes por nombre. 
+### Sin login
+Se puede ingresar sin usuario, cargar reseñas, podcast y mensajes, que se fijan por defecto como anonimo.
 
-Orden en que se prueban las cosas:
-En contacto mandar un mensaje. 
-En ingresar "mis mensajes" ver el mensaje y buscarlo con el nombre correcto, con un nombre inexistente y vacio.
-En ingresar cargar datos de perfil, una bio, tres obras, un curso.
+### Login
+En en el acceso de login se puede inicar sesion o crear un usuario.
+Con usuario la carga de podcast, reseñas y mensajes se setea por defecto con el usuario. 
+Se agrega en la navbar el nombre de usuario y un acceso a editar su perfil y contraseña(con permiso de usuario). 
 
-Salir y mirar si quedo todo bien.
+El superuser en lugar de acceso a editar perfil tiene acceso al Administrador(Con permiso de administrador), donde puede editar o borrar reseñas, mensajes, podcast u usuarios.
+En la edicion de usuarios puede hacerlo parte del staff para que ese usuario sea una especie de moderador, 
+accediendo tambien al Administrador. 
 
-Mi parte favorita, romper la url. 
+*** todos los posteos se orden con -id para que aparezca siempre el ultimo arriba. ***
+
+### Galeria
+Carga por defecto la portada del posteo del blog, con autor y titulo (Titulo es un detailview del posteo)
+
+### Reseñas
+Hay un acceso a crear tu reseña, un buscador de reseña por titulo y una listview de todas las reseñas. El titulo es un detailview.
+*** Las imagenes siguen la ruta = FileSystemStorage(location="AppProyectoFinal/static/AppProyectoFinal/img") dentro del modelo, ya que lo hice antes de aprender el media root. ***
+
+### Podcast
+Hay un acceso a crear tu podcast, un buscador de podcast por usuario y una listview de todas las podcasts.
+La idea era trabajara con un URLfield para cambiar un poco, pero el codigo de spotify es distinto al de incrustacion. 
+
+### Foro
+Hay un buscador de mensaje por usuario, un acceso para dejar tu mensaje y una listview de todos los mensaje.
+
+### Logout
+LLeva a un gato que mira.
+
+### Acerca de mi
+Esta el acceso en el pie de pagina. 

@@ -1,33 +1,31 @@
 {% extends "AppProyectoFinal/padre_admin.html" %}
 
-{% block Titulo %} Editar usuario {% endblock  %}
+{% block Titulo %} Editar podcast {% endblock  %}
 
 {% block CuerpoDeLaPagina %}
 <section class="py-5">
     <div class="container my-5">
         <div class="row justify-content-left">
             <div class="col-lg-10">
-                <h2>Editar usuario</h2>    
+                <h2>Editar podcast</h2>    
                 {% if form.errors %}
                 Algo anda mal
                 {% endif %}
                                     <form action="" method="POST" enctype="multipart/form-data"> {% csrf_token %}
                                         <table>
                                         
-                                        {{form}}
+                                        {{form.as_p}}
                                         </table>
                                     
                                         <input type="submit" value="Editar">
                 
-                                        
-                <input type="button" onclick="location.href='/usuario_lista_administrador';" value="Volver" />
                 
-                
+                <input type="button" onclick="location.href='/podcast_lista_administrador';" value="Volver" />
+                             
             </div>
         </div>
     </div>
 </section>
-
 
 
 {% endblock %}

@@ -23,12 +23,16 @@ urlpatterns = [
     #FORO
     path('foro', views.ForoListView.as_view(), name="foro"),
     path('mensajes', views.ForoCreateView.as_view(), name="mensajes"),
-    path('buscar', views.buscar, name="buscar"),
+    path('buscar_mensaje', views.buscar_mensaje, name="buscar_mensaje"),
+    #PODCAST
+    path('podcast', views.PodcastListView.as_view(), name="podcast"),
+    path('form_podcast', views.PodcastCreateView.as_view(), name="form_podcast"),
+    path('buscar_podcast', views.buscar_podcast, name="buscar_podcast"),
     #ADMINISTRADOR
     path('administrador', views.administrador, name="administrador"),
     #foro
     path('foro_lista_administrador', views.AdminstradorForoListView.as_view(), name="foro_lista_administrador"),
-    path('buscar_administrador', views.buscar_administrador, name="buscar_administrador"),
+    path('buscar_mensaje_administrador', views.buscar_mensaje_administrador, name="buscar_mensaje_administrador"),
     path('foro_borrar_administrador/<pk>', views.AdministradorForoDeleteView.as_view(), name="foro_borrar_administrador"),
     path('foro_editar_administrador/<pk>', views.AdministradorForoUpdateView.as_view(), name="foro_editar_administrador"),
     #blog
@@ -36,14 +40,20 @@ urlpatterns = [
     path('buscar_blog_administrador', views.buscar_blog_administrador, name="buscar_blog_administrador"),
     path('blog_borrar_administrador/<pk>', views.AdministradorBlogDeleteView.as_view(), name="blog_borrar_administrador"),
     path('blog_editar_administrador/<pk>', views.AdministradorBlogUpdateView.as_view(), name="blog_editar_administrador"),
+    #podcast
+    path('podcast_lista_administrador', views.AdminstradorPodcastListView.as_view(), name="podcast_lista_administrador"),
+    path('buscar_podcast_administrador', views.buscar_podcast_administrador, name="buscar_podcast_administrador"),
+    path('podcast_borrar_administrador/<pk>', views.AdministradorPodcastDeleteView.as_view(), name="podcast_borrar_administrador"),
+    path('podcast_editar_administrador/<pk>', views.AdministradorPodcastUpdateView.as_view(), name="podcast_editar_administrador"),
     #usuario
     path('usuario_lista_administrador', views.AdminstradorUserListView.as_view(), name="usuario_lista_administrador"),
     path('buscar_user_administrador', views.buscar_user_administrador, name="buscar_user_administrador"),
     path('usuario_borrar_administrador/<pk>', views.AdministradorUserDeleteView.as_view(), name="usuario_borrar_administrador"),
     path('usuario_editar_administrador/<pk>', views.AdministradorUserUpdateView.as_view(), name="usuario_editar_administrador"),
+    path('change_password_administrador/<id>', views.change_password_administrador, name='change_password_administrador'),
     #PERFIL DE USUARIO
     path('editar_usuario', views.UserAutoUpdateView.as_view(), name="editar_usuario"),
     path('mi_usuario', views.mi_usuario, name="mi_usuario"),
     path('change_password', views.change_password, name='change_password'),
-    path('editarPerfil', views.editarPerfil, name='editarPerfil'),
+    
 ]
