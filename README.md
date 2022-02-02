@@ -1,4 +1,8 @@
 # PrroyectoFinal
+
+**LA RAMA DONDE ESTA EL PROYECTO FINAL ES PROYECTOFINAL Y ALLI TIENE SU README. **
+
+
 Proyecto final del curso de Python
 No se si entendí bien cual seria el proyecto final.
 Yo lo que hice es un Blog de artista, donde se supone que cada artista puede entrar, cargar sus datos, y de alguna 
