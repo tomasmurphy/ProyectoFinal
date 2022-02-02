@@ -7,6 +7,9 @@
 ## BLOG
 Es un blog donde se pueden subir reseñas de libros, podcast de spotify e interactuar en un foro.
 
+Video corto de la pagina. 
+https://drive.google.com/file/d/1jbVHeN0jcpFlWOqrCan-1wPVEqly-4Js/view?usp=sharing
+
 ### Inicio
 Se ingresa desde localhost:http://127.0.0.1:8000
 
